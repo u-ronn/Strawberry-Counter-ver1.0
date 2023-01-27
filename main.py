@@ -15,7 +15,7 @@ else:
         pass
 # title
 st.set_page_config(page_title="StrawberryCounter v1.0",layout="wide")
-st.title(":strawberry:""VideoFile Strawberry Counter")
+st.title(":strawberry:""Strawberry Counter")
 
 # sidebar
 #st.sidebar.title("AI coordinator")
