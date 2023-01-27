@@ -22,12 +22,12 @@ st.title(":strawberry:""Strawberry Counter")
 #st.sidebar.markdown("---")
 
 # model load
-#model_select = st.sidebar.selectbox(
-#    "model selection",
-#    ("yolov5n", "yolov5s", "yolov5m", "yolov5l", "yolov5x", "yolov5x6"))
-#model = torch.hub.load('ultralytics/yolov5', model_select)  #学習済みモデルをダウンロード
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
-model = torch.load('best.pt')
+model_select = st.sidebar.selectbox(
+    "model selection",
+    ("yolov5n", "yolov5s", "yolov5m", "yolov5l", "yolov5x", "yolov5x6"))
+model = torch.hub.load('ultralytics/yolov5', model_select)  #学習済みモデルをダウンロード
+#model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+#model = torch.load('best.pt')
 #st.sidebar.markdown("---")
 
 #threshold = st.sidebar.slider("threshold", min_value= 0.01, max_value=1.0, value=0.2)
@@ -102,8 +102,8 @@ if file:
         save_image_flg = 0
         cls_count_list = []
         for *box, conf, cls in results.xyxy[0]:
-            #total_cls_count_list.append(model.names[int(cls)])
-            #cls_count_list.append(model.names[int(cls)])
+            total_cls_count_list.append(model.names[int(cls)])
+            cls_count_list.append(model.names[int(cls)])
             save_image_flg = 1
 
         st_show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
