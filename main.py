@@ -26,6 +26,7 @@ st.title(":strawberry:""Strawberry Counter")
 #    "model selection",
 #    ("yolov5n", "yolov5s", "yolov5m", "yolov5l", "yolov5x", "yolov5x6"))
 #model = torch.hub.load('ultralytics/yolov5', model_select)  #学習済みモデルをダウンロード
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 model = torch.load('best.pt')
 #st.sidebar.markdown("---")
 
