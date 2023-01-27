@@ -78,7 +78,7 @@ if file:
         ret, frame = camera.read()
         frame_count += 1 
         if not ret:
-            # print("Can't receive frame (stream end?). Exiting ...")
+            print("Can't receive frame (stream end?). Exiting ...")
             break
 
         #if class_id != [80]:
