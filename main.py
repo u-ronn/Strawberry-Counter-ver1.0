@@ -22,12 +22,12 @@ st.title(":strawberry:""Strawberry Counter")
 #st.sidebar.markdown("---")
 
 # model load
-#model_select = st.sidebar.selectbox(
-#    "model selection",
-#    ("yolov5n", "yolov5s", "yolov5m", "yolov5l", "yolov5x", "yolov5x6"))
+model_select = st.sidebar.selectbox(
+    "model selection",
+("yolov5n", "yolov5s", "yolov5m", "yolov5l", "yolov5x", "yolov5x6"))
 model = torch.hub.load('ultralytics/yolov5', yolov5n)  #学習済みモデルをダウンロード
 #model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
-#model = torch.load('best.pt')
+model = torch.load('best.pt')
 #st.sidebar.markdown("---")
 
 #threshold = st.sidebar.slider("threshold", min_value= 0.01, max_value=1.0, value=0.2)
