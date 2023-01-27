@@ -86,14 +86,14 @@ if file:
         #model.conf = threshold
 
          # 解像度を縮小するとき
-        #if frame.shape[0] >= 1400:
-        #    frame = cv2.resize(frame, dsize=None, fx=0.3, fy=0.3)
-        #elif frame.shape[0] >= 1080:
-        #    frame = cv2.resize(frame, dsize=None, fx=0.4, fy=0.4)
-        #elif frame.shape[0] >= 600:
-        #    frame = cv2.resize(frame, dsize=None, fx=0.7, fy=0.7)
-        #elif frame.shape[0] >= 481:
-        #    frame = cv2.resize(frame, dsize=None, fx=0.9, fy=0.9)
+        if frame.shape[0] >= 1400:
+            frame = cv2.resize(frame, dsize=None, fx=0.3, fy=0.3)
+        elif frame.shape[0] >= 1080:
+            frame = cv2.resize(frame, dsize=None, fx=0.4, fy=0.4)
+        elif frame.shape[0] >= 600:
+            frame = cv2.resize(frame, dsize=None, fx=0.7, fy=0.7)
+        elif frame.shape[0] >= 481:
+            frame = cv2.resize(frame, dsize=None, fx=0.9, fy=0.9)
 
         results = model(frame)
         results.render()
