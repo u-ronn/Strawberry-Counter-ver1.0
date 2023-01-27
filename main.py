@@ -22,28 +22,29 @@ st.title(":strawberry:""Strawberry Counter")
 #st.sidebar.markdown("---")
 
 # model load
-model_select = st.sidebar.selectbox(
-    "model selection",
-    ("yolov5n", "yolov5s", "yolov5m", "yolov5l", "yolov5x", "yolov5x6"))
-model = torch.hub.load('ultralytics/yolov5', model_select)  #学習済みモデルをダウンロード
-st.sidebar.markdown("---")
+#model_select = st.sidebar.selectbox(
+#    "model selection",
+#    ("yolov5n", "yolov5s", "yolov5m", "yolov5l", "yolov5x", "yolov5x6"))
+#model = torch.hub.load('ultralytics/yolov5', model_select)  #学習済みモデルをダウンロード
+model = torch.load('best.pt')
+#st.sidebar.markdown("---")
 
 #threshold = st.sidebar.slider("threshold", min_value= 0.01, max_value=1.0, value=0.2)
 #st.sidebar.markdown("---")
 
 # get class name
-yolov5_list =[]
-for objectname in model.names.values():
-    yolov5_list.append(objectname)
-yolov5_list.append("all object")
+#yolov5_list =[]
+#for objectname in model.names.values():
+#    yolov5_list.append(objectname)
+#yolov5_list.append("all object")
 
 # select class
-class_name = yolov5_list
-class_id = []
-sel_class = st.sidebar.multiselect("Select The Custom Classes", list(class_name), default="all object")
-for each in sel_class:
-    class_id.append(class_name.index(each))
-st.sidebar.markdown("---")
+#class_name = yolov5_list
+#class_id = []
+#sel_class = st.sidebar.multiselect("Select The Custom Classes", list(class_name), default="all object")
+#for each in sel_class:
+#    class_id.append(class_name.index(each))
+#st.sidebar.markdown("---")
 
 col1, col2 = st.columns(2)
 with col1:
@@ -80,19 +81,19 @@ if file:
             # print("Can't receive frame (stream end?). Exiting ...")
             break
 
-        if class_id != [80]:
-            model.classes = class_id
+        #if class_id != [80]:
+        #    model.classes = class_id
         #model.conf = threshold
 
          # 解像度を縮小するとき
-        if frame.shape[0] >= 1400:
-            frame = cv2.resize(frame, dsize=None, fx=0.3, fy=0.3)
-        elif frame.shape[0] >= 1080:
-            frame = cv2.resize(frame, dsize=None, fx=0.4, fy=0.4)
-        elif frame.shape[0] >= 600:
-            frame = cv2.resize(frame, dsize=None, fx=0.7, fy=0.7)
-        elif frame.shape[0] >= 481:
-            frame = cv2.resize(frame, dsize=None, fx=0.9, fy=0.9)
+        #if frame.shape[0] >= 1400:
+        #    frame = cv2.resize(frame, dsize=None, fx=0.3, fy=0.3)
+        #elif frame.shape[0] >= 1080:
+        #    frame = cv2.resize(frame, dsize=None, fx=0.4, fy=0.4)
+        #elif frame.shape[0] >= 600:
+        #    frame = cv2.resize(frame, dsize=None, fx=0.7, fy=0.7)
+        #elif frame.shape[0] >= 481:
+        #    frame = cv2.resize(frame, dsize=None, fx=0.9, fy=0.9)
 
         results = model(frame)
         results.render()
@@ -100,8 +101,8 @@ if file:
         save_image_flg = 0
         cls_count_list = []
         for *box, conf, cls in results.xyxy[0]:
-            total_cls_count_list.append(model.names[int(cls)])
-            cls_count_list.append(model.names[int(cls)])
+            #total_cls_count_list.append(model.names[int(cls)])
+            #cls_count_list.append(model.names[int(cls)])
             save_image_flg = 1
 
         st_show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
