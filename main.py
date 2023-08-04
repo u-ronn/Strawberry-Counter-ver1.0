@@ -2,6 +2,7 @@ import os, cv2, torch, shutil
 import pandas as pd
 import streamlit as st
 from collections import Counter
+import ultralytics
 
 # upload file
 move_dir = "up_move"
